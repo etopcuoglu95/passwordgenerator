@@ -20,6 +20,8 @@ body {
   margin: 0;
   font-family: Inter,sans-serif;
   height: 100vh;
-  background-color: #f1f1f7;
+  background-color: #f1f1f5;
 }
-
+.generator--box{
+  text-align: center;
+}

@@ -1,14 +1,21 @@
 import React from 'react';
+import "../navbar.css"
 
 function Navbar()
 { 
   return (
-    <nav>
-      <h4 className="navbar--text">NAVBAR</h4>
-      <div className = "logo--div">
-      </div>
-      
-      <h4 className="nav--title">Navigaton bar component</h4>
+    <nav className="navbar">
+      <ul>
+        <li>
+        <a href ="/login" className=""> Login</a>
+        </li>
+        <li>
+        <a href ="/signup" className=""> Signup</a>
+        </li>
+        <li>
+        <a href ="/home" className=""> Home</a>
+        </li>
+      </ul>
     </nav>
   )
 }
