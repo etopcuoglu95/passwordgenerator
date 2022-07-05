@@ -10,7 +10,6 @@ app.use(bodyParser.json());
 const postRouter = require('./routes/Posts');
 app.use("/posts", postRouter);
 
-
 app.use((req, res, next) => 
 {
   res.setHeader('Access-Control-Allow-Origin', '*');

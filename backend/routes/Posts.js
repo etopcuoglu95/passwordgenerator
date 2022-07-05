@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {user} = require("../models");
+const db = require("../models");
 
 router.get("/", async (req, res) => {
 
@@ -8,9 +8,15 @@ router.get("/", async (req, res) => {
     res.json(list);
 });
 
-router.post("/", async (req, res) => {
+router.post("/CreateUser", async (req, res) => {
     const post = req.body;
-    await user.create(post);
+    await db.users.create(post);
+    res.json(post);
+});
+
+router.post("/CreatePassword", async (req, res) => {
+    const post = req.body;
+    await db.passwords.create(post);
     res.json(post);
 });
 
