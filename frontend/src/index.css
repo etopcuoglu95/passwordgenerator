@@ -25,3 +25,62 @@ body {
 .generator--box{
   text-align: center;
 }
+
+.signupPage {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100vw;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 600px;
+  height: 500px;
+  padding: 20px;
+  border: 2px solid dodgerblue;
+  border-radius: 5px;
+  font-weight: normal;
+  color: #707070;
+}
+
+.formContainer #inputCreateUser {
+  height: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 2px solid #858585;;
+  border-radius: 3px;
+  padding-left: 10px;
+  font-size: 17px;
+}
+
+.formContainer button {
+  margin-top: 15px;
+  height: 40px;
+  border: none;
+  background-color: lightskyblue;
+  border-radius: 5px;
+  color: white;
+  width: 140px;
+  background-color: #0572ec;
+  box-shadow: inset 0 0 0 1px #0572ec;
+}
+
+.formContainer button:hover {
+  cursor: pointer;
+  background-color: dodgerblue;
+}
+
+span {
+  color: red;
+}
+
+h2 {
+  font-size: 32px;
+  line-height: 38.4px;
+  color: rgb(7, 7, 7);
+  text-align: center;
+}

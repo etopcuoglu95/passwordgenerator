@@ -1,12 +1,26 @@
-import Body from './Components/Body';
-import Generetor from './Components/Generator';
+import Home from './Pages/Home';
 import Navbar from './Components/Navbar';
+import Signup from './Pages/Signup';
 
 function App() {
+  let component
+  switch (window.location.pathname)
+  {
+    case "/":
+      component = <Home />
+      break
+    
+      case "/home":
+      component = <Home />
+      break
+
+    case "/Signup":
+      component = <Signup />
+      break
+  }
   return ( <div className="container" >
     <Navbar/>
-    <Body />
-    <Generetor/>
+    {component}
   </div>
   );
 }
