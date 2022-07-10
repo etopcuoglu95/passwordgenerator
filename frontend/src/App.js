@@ -6,17 +6,13 @@ function App() {
   let component
   switch (window.location.pathname)
   {
-    case "/":
-      component = <Home />
-      break
-    
       case "/home":
       component = <Home />
-      break
+      break;
 
     case "/Signup":
       component = <Signup />
-      break
+      break;
   }
   return ( <div className="container" >
     <Navbar/>

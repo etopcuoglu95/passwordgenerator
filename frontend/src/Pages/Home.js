@@ -1,12 +1,12 @@
 import React from 'react'
 import Body from '../Components/Body'
-import GeneratorNew from '../Components/GeneratorNew'
+import Generator from '../Components/Generator'
 
 function Home() {
   return (
     <div>
         <Body/>
-        <GeneratorNew/>
+        <Generator/>
     </div>
   )
 }

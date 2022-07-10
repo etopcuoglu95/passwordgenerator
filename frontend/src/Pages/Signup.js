@@ -13,7 +13,7 @@ function Signup() {
   };
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string().required("Yo must do email bruh"),
+    email: Yup.string().required(),
     password: Yup.string().required(),
     FirstName: Yup.string().min(3).max(15).required(),
     LastName: Yup.string().min(3).max(15).required()
@@ -43,7 +43,7 @@ function Signup() {
           <Field 
             id = "inputCreateUser"
             name="password" 
-            placeholder="Ex. ASDFG"
+            placeholder="Should include Uppercase and Special Characters '. / @ ! etc'"
            />
            <label>First Name: </label>
            <ErrorMessage name="FirstName" component="span"/>
