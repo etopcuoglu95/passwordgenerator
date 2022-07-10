@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const db = require("../models");
 
+// Add login api
+
 router.get("/", async (req, res) => {
 
     const list = await user.findAll();
