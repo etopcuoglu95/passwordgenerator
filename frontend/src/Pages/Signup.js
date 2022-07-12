@@ -3,6 +3,8 @@ import axios from "axios";
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup'
 
+// Do ul for buttons to do side by side
+
 function Signup() {
   
   const initialValues ={
@@ -29,7 +31,7 @@ function Signup() {
   return (
     <div className="signupPage">
       <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
-        <Form className="formContainer">
+        <Form className="formContainerSignup">
             <h2>Create an account</h2>
           <label>Email: </label>
           <ErrorMessage name="email" component="span"/>
@@ -60,6 +62,7 @@ function Signup() {
             placeholder="Ex. Morrison"
            />
            <button type="submit">Create User</button>
+           <a href ="/login" className="account"> Already Have Account?</a>
         </Form>
       </Formik>
     </div>
