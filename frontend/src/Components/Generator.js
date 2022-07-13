@@ -15,11 +15,7 @@ function Generetor()
     <div className="generator--box">
         <input name="passbox" id="final_pass" type="text" size="40" value= {value}/>
         <button onClick={changeName}>Generate</button>
-            <button 
-            onClick={() =>  navigator.clipboard.writeText(value)}
-            >
-            Copy
-            </button>
+        <button onClick={() => navigator.clipboard.writeText(value)}>Copy</button>
     </div>
     
   )

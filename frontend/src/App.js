@@ -19,7 +19,7 @@ function App() {
       component = <Home />
       break;
 
-      case "/Signup":
+      case "/signup":
       component = <Signup />
       break;
   }

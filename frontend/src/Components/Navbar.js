@@ -10,7 +10,7 @@ function Navbar()
         <a href ="/login" className=""> Login</a>
         </li>
         <li>
-        <a href ="/Signup" className=""> Signup</a>
+        <a href ="/signup" className=""> Signup</a>
         </li>
         <li>
         <a href ="/home" className=""> Home</a>

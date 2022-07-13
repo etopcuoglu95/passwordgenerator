@@ -61,8 +61,10 @@ function Signup() {
             name="LastName" 
             placeholder="Ex. Morrison"
            />
-           <button type="submit">Create User</button>
-           <a href ="/login" className="account"> Already Have Account?</a>
+           <ul className='formUl'>
+              <button type="submit">Create User</button>
+              <a href ="/login" className="account"> Already Have Account?</a>
+           </ul>
         </Form>
       </Formik>
     </div>

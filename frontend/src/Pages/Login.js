@@ -1,9 +1,12 @@
 import React from 'react';
 import axios from "axios";
 import {Formik, Form, Field, ErrorMessage} from 'formik';
-import * as Yup from 'yup'
+import * as Yup from 'yup';
+import {useNavigate} from 'react-router-dom';
+
 
 // Do ul for buttons to do side by side
+
 
 function Login(){
     
@@ -18,9 +21,9 @@ function Login(){
       });
 
       const onSubmit = (data) => {
-        //axios.post("http://localhost:5000/posts/CreateUser", data).then((response) => {
+        axios.post("http://localhost:5000/posts/login", data).then((response) => {
         console.log("It worked");
-        //});
+        });
       }
 
       return (
@@ -40,10 +43,14 @@ function Login(){
               <Field 
                 id = "inputCreateUser"
                 name="password" 
+                type="password"
                 placeholder="Enter your password"
                />
-               <button type="submit">Login</button>
-               <button type="submit">Signup</button>
+               <ul className='formUl'>
+                <button type="submit">Login</button>
+                <a href ="/Signup" className="account"> Need an Account?</a>
+               </ul>
+
             </Form>
           </Formik>
         </div>
