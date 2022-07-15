@@ -26,6 +26,21 @@ body {
   text-align: center;
 }
 
+.generator--box button{
+  background-color: dodgerblue;
+  color: white;
+  width: 150px;
+  height: 20px;
+  padding: 0;
+  margin: 3px;
+  gap: 0;
+}
+
+.generator--box button:hover {
+  cursor: pointer;
+  background-color: rgb(22, 101, 180);
+}
+
 .formUl
 {
   padding: 0;
@@ -33,6 +48,14 @@ body {
   list-style: none;
   display: flex;
   gap: 13rem;
+}
+
+.loginFormUl
+{
+  display: flex;
+  padding: 0;
+  margin: 0;
+  gap: 10rem;
 }
 
 .signupPage {
@@ -56,45 +79,49 @@ body {
   color: #707070;
 }
 
-.formContainerLogin {
+.loginPage {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100vw;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 600px;
-  height: 400px;
-  padding: 20px;
+  width: 400px;
+  height: 350px;
+  padding: 10px;
   border: 2px solid dodgerblue;
   border-radius: 5px;
   font-weight: normal;
   color: #707070;
 }
 
-.formContainerLogin #inputCreateUser {
-  height: 40px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border: 2px solid #858585;;
-  border-radius: 3px;
-  padding-left: 10px;
-  font-size: 17px;
-}
-
-.formContainerLogin button {
-  margin-top: 15px;
-  height: 40px;
+.loginContainer input,
+button {
+  width: 350px;
+  height: 35px;
+  border-radius: 8px;
   border: none;
-  background-color: lightskyblue;
-  border-radius: 5px;
-  color: white;
-  width: 140px;
-  background-color: #0572ec;
-  box-shadow: inset 0 0 0 1px #0572ec;
-  font-size: 15px;
+  margin: 10px;
 }
 
-.formContainerLogin button:hover {
-  cursor: pointer;
+.loginContainer button {
   background-color: dodgerblue;
+  color: white;
+}
+
+.loginContainer button:hover {
+  cursor: pointer;
+  background-color: rgb(22, 101, 180);
+}
+
+.loginContainer input {
+  border: 2px solid dodgerblue;
 }
 
 .formContainerSignup #inputCreateUser {
@@ -132,6 +159,17 @@ body {
   display: stretch;
   justify-content: space-between;
   padding-top: 1.5rem;
+}
+
+.accountLogin
+{
+  color: dodgerblue;
+  text-decoration: none;
+  display: stretch;
+  gap: 0;
+  margin: 0;
+  padding-top: 1rem;
+  padding-right: 3rem;
 }
 
 span {
