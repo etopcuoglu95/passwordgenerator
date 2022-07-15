@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require("../models");
+const bcrypt = require("bcrypt");
 
 router.get("/", async (req, res) => {
 
@@ -10,15 +11,27 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/CreateUser", async (req, res) => {
-    const post = req.body;
-    await db.users.create(post);
-    res.json(post);
+    const {email,password} = req.body;
+    bcrypt.hash(password,10).then((hash) => {
+        db.users.create({
+            email : email,
+            password : hash,
+        });
+        res.json("Success");
+    });
+    
+    
 });
 
 router.post("/CreatePassword", async (req, res) => {
-    const post = req.body;
-    await db.passwords.create(post);
-    res.json(post);
+    const {name,pass} = req.body;
+    bcrypt.hash(pass,10).then((hash) => {
+        db.passwords.create({
+            name : name,
+            pass : hash,
+        });
+        res.json("Success");
+    });
 });
 
 
@@ -30,16 +43,21 @@ router.post("/FindPasswords", async (req, res) => {
     res.json(list);
 });
 
+// update login
 router.post("/login", async (req, res) => {
     const {email, password} = req.body;
     try {
 
         const User = await db.users.findOne({
-            where: { email: email, password: password },
+            where: { email: email}
         });
 
         if (!User)
             return res.status(401).json({ id: "", token: "", error: "Invalid Credentials" });
+        
+        bcrypt.compare(password,User.password).then((match) =>{
+            if (!match) res.json({error : "Wrong Password"});
+        });
 
         return res.status(200).json({ id: User.id, token: "", error: "" });
     } catch (e) {
