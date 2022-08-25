@@ -6,7 +6,7 @@ import Sgenerator from '../middleware/Sgenerator';
 // Get a length from input and call funtion with that 
 function Generetor()
 {
-  const [value, setValue] = useState("Generate Your Password ------>", "")
+  const [value, setValue] = useState("Wanna generate a password? ------>", "")
   const changeName = () => {
       setValue(Sgenerator(10))
   }
