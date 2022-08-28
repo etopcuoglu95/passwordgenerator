@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Navbar from "../Components/Navbar";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -13,31 +14,35 @@ function Login() {
   };
 
   return (
-    <div className="loginPage">
-      <div className="loginContainer">
-      <h2>Login</h2>
-      <label>Username:</label>
-      <input
-        type="text"
-        onChange={(event) => {
-          setEmail(event.target.value);
-        }}
-      />
-      <label>Password:</label>
-      <input
-        type="password"
-        onChange={(event) => {
-          setPassword(event.target.value);
-        }}
-      />
+    <div>
+      <Navbar/>
+      <div className="loginPage">
+          <div className="loginContainer">
+            <h2>Login</h2>
+            <label>Username:</label>
+            <input
+              type="text"
+              onChange={(event) => {
+                setEmail(event.target.value);
+              }}
+            />
+            <label>Password:</label>
+            <input
+              type="password"
+              onChange={(event) => {
+                setPassword(event.target.value);
+              }}
+            />
 
-      
-      <ul className='loginFormUl'>
-              <button onClick={login}> Login </button>
-              <a href ="/signup" className="accountLogin"> Need an Account?</a>
-      </ul>
+            
+            <ul className='loginFormUl'>
+                    <button onClick={login}> Login </button>
+                    <a href ="/signup" className="accountLogin"> Need an Account?</a>
+            </ul>
+          </div>
+        </div>
     </div>
-    </div>
+    
   );
 }
 
