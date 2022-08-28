@@ -18,34 +18,6 @@ function App() {
       </Routes>
     </BrowserRouter>  
   );
-  
-  /*
-  let component
-  switch (window.location.pathname)
-  {
-      case "/":
-      component = <Home />
-      break;
-
-      case "/login":
-      component = <Login />
-      break;
-
-      case "/home":
-      component = <Home />
-      break;
-
-      case "/signup":
-      component = <Signup />
-      break;
-
-      case "/userhome":
-      component = <UserHome />
-      break;
-  }
-  return ( 
-  );
-  */
 }
 
 export default App;

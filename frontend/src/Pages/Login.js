@@ -1,15 +1,26 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Navbar from "../Components/Navbar";
+import { useNavigate } from 'react-router-dom';
+
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate();
+
+
   const login = () => {
     const data = { email: email, password: password };
     axios.post("http://localhost:5000/posts/login", data).then((response) => {
-      console.log("Worked");
+      if(response.data.error)
+        alert(response.data.error);
+      else
+      {
+        sessionStorage.setItem("accessToken(Dont peek please lol)", response.data.token);
+        navigate(`/userhome/${response.data.id}`);
+      }
     });
   };
 
@@ -34,7 +45,6 @@ function Login() {
               }}
             />
 
-            
             <ul className='loginFormUl'>
                     <button onClick={login}> Login </button>
                     <a href ="/signup" className="accountLogin"> Need an Account?</a>

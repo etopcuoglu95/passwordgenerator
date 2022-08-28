@@ -12,6 +12,7 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.TEXT,
             allowNull: false,
         },
+
         AdminLevel: {
             type: DataTypes.INTEGER,
             defaultValue: 0
