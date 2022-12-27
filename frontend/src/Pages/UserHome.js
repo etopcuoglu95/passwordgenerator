@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../Components/Navbar'
+import Navbar from '../Components/Navigation'
 import { useParams} from "react-router-dom";
 
 // After login come here, axios post create password using middleware,

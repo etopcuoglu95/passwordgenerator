@@ -1,7 +1,7 @@
 import React from 'react'
 import Body from '../Components/Body'
 import Generator from '../Components/Generator'
-import Navbar from '../Components/Navbar'
+import Navbar from '../Components/Navigation'
 
 function Home() {
   return (

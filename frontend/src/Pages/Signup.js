@@ -2,7 +2,7 @@ import React from 'react';
 import axios from "axios";
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup'
-import Navbar from '../Components/Navbar';
+import Navbar from '../Components/Navigation';
 
 // Do ul for buttons to do side by side
 
