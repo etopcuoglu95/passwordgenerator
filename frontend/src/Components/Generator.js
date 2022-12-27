@@ -29,7 +29,7 @@ function Generator()
           min = '8'
           max = '20'
           />
-        <input name="passbox" id="final_pass" type="text" size="40" value= {value}/>
+        <input className="passbox" id="final_pass" type="text" size="40" value= {value}/>
         <Button variant="primary" onClick={changeName}>Generate</Button>
         <Button variant="primary" onClick={() => navigator.clipboard.writeText(value)}>Copy</Button>
     </div>

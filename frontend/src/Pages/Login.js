@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Navbar from "../Components/Navigation";
+import Button from 'react-bootstrap/Button';
+import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from 'react-router-dom';
 
 
@@ -27,30 +29,42 @@ function Login() {
   return (
     <div>
       <Navbar/>
-      <div className="loginPage">
-          <div className="loginContainer">
-            <h2>Login</h2>
-            <label>Username:</label>
-            <input
-              type="text"
-              onChange={(event) => {
-                setEmail(event.target.value);
-              }}
-            />
-            <label>Password:</label>
-            <input
-              type="password"
-              onChange={(event) => {
-                setPassword(event.target.value);
-              }}
-            />
-
-            <ul className='loginFormUl'>
-                    <button onClick={login}> Login </button>
-                    <a href ="/signup" className="accountLogin"> Need an Account?</a>
-            </ul>
-          </div>
+      <div className="Auth-form-container">
+            <form className="Auth-form" >
+                <div className="Auth-form-content">
+                    <h3 className="Auth-form-title">Sign In</h3>
+                    <div className="form-group mt-3">
+                        <label>Email address</label>
+                        <input
+                            type="email"
+                            className="form-control mt-1"
+                            placeholder="Enter email"
+                            onChange={(c) => setEmail(c.target.value)}
+                        />
+                    </div>
+                    <div className="form-group mt-3">
+                        <label>Password</label>
+                        <input
+                            type="password"
+                            className="form-control mt-1"
+                            placeholder="Enter password"
+                            onChange={(c) => setPassword(c.target.value)}
+                        />
+                    </div>
+                    <div className="d-grid gap-2 mt-3">
+                        <>
+                        <Button type="submit" variant="flat" className="custom-btn" style={{color: 'white'}} onClick={login}>
+                            Login
+                        </Button>
+                        <a href ="/signup" className="accountLogin" style={{color: 'white'}}> Need an Account?</a>
+                        </>
+                    </div>
+                </div>
+            </form>
         </div>
+      
+    
+        
     </div>
     
   );

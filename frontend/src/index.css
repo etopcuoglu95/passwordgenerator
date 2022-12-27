@@ -37,11 +37,18 @@ body {
   padding: 0;
   margin: 5px;
   gap: 0;
+  margin-bottom: 8.3px;
+  margin-left: 5px;
 }
 
 .generator--box button:hover {
   cursor: pointer;
   background-color: rgb(22, 101, 180);
+}
+
+.passbox
+{
+  margin-top: 10px;
 }
 
 .formUl
@@ -80,99 +87,6 @@ body {
   border-radius: 5px;
   font-weight: normal;
   color: #707070;
-}
-
-.loginPage {
-  font-family: Arial, Helvetica, sans-serif;
-  width: 100vw;
-  height: 70vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.loginContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 400px;
-  height: 350px;
-  padding: 10px;
-  border: 2px solid dodgerblue;
-  border-radius: 5px;
-  font-weight: normal;
-  color: #707070;
-}
-
-.loginContainer input,
-button {
-  width: 350px;
-  height: 35px;
-  border-radius: 8px;
-  border: none;
-  margin: 10px;
-}
-
-.loginContainer button {
-  background-color: dodgerblue;
-  color: white;
-}
-
-.loginContainer button:hover {
-  cursor: pointer;
-  background-color: rgb(22, 101, 180);
-}
-
-.loginContainer input {
-  border: 2px solid dodgerblue;
-}
-
-.formContainerSignup #inputCreateUser {
-  height: 40px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border: 2px solid #858585;;
-  border-radius: 3px;
-  padding-left: 10px;
-  font-size: 17px;
-}
-
-.formContainerSignup button {
-  margin-top: 15px;
-  height: 40px;
-  border: none;
-  background-color: lightskyblue;
-  border-radius: 5px;
-  color: white;
-  width: 140px;
-  background-color: #0572ec;
-  box-shadow: inset 0 0 0 1px #0572ec;
-  font-size: 15px
-}
-
-.formContainerSignup button:hover {
-  cursor: pointer;
-  background-color: dodgerblue;
-}
-
-.account
-{
-  color: dodgerblue;
-  text-decoration: none;
-  display: stretch;
-  justify-content: space-between;
-  padding-top: 1.5rem;
-}
-
-.accountLogin
-{
-  color: dodgerblue;
-  text-decoration: none;
-  display: stretch;
-  gap: 0;
-  margin: 0;
-  padding-top: 1rem;
-  padding-right: 3rem;
 }
 
 span {
@@ -215,4 +129,64 @@ b
 {
   font-size: 20px;
   color: dodgerblue;
+}
+
+.Auth-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 200px;
+  
+  
+}
+
+.Auth-form {
+  width: 500px;
+  height: 500px;
+  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  padding-top: 90px;
+  padding-bottom: 20px;
+  border-radius: 8px;
+  background-color: dodgerblue;
+  
+}
+
+.Auth-form-content {
+  padding-left: 12%;
+  padding-right: 12%;
+  
+}
+
+.Auth-form-title {
+  text-align: center;
+  margin-bottom: 1em;
+  font-size: 26px;
+  font-weight: 800;
+  color: white;
+}
+
+label {
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+}
+
+.error-text {
+  color: white;
+  text-align: center;
+}
+
+.custom-btn {
+  margin-top: 20px;
+  width: 380px;
+  
+}
+
+.btn-flat {
+  background-color:  rgb(25, 38, 218) !important;
+  color:  dodgerblue;
+}
+.btn-flat:hover{
+  background-color: rgb(15, 36, 228) !important;
+  color:  rgb(22, 101, 180);
 }
