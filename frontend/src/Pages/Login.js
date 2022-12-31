@@ -9,28 +9,58 @@ import { useNavigate } from 'react-router-dom';
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
 
   const navigate = useNavigate();
+  const doLogin = async event => {
+    event.preventDefault();
 
+    var obj = { email: email, password: password };
+    var js = JSON.stringify(obj);
+    var config =
+        {
+            method: 'post',
+            url: "http://localhost:5000/posts/login",
+            headers:
+                {
+                    'Content-Type': 'application/json'
+                },
+            data: js
+        };
 
-  const login = () => {
-    const data = { email: email, password: password };
-    axios.post("http://localhost:5000/posts/login", data).then((response) => {
-      if(response.data.error)
-        alert(response.data.error);
-      else
-      {
-        sessionStorage.setItem("accessToken(Dont peek please lol)", response.data.token);
-        navigate(`/userhome/${response.data.id}`);
-      }
-    });
-  };
+    axios(config)
+        .then(function (response) {
+            const res = response.data;
+            if (res.error) {
+              alert(response.data.error);
+            }
+            else {
+                var user = { id: res.id, email: email, token: res.token};
+                localStorage.setItem('user_data', JSON.stringify(user));
+                navigate("/userhome", {
+                    state: {
+                        user: user
+                    }
+                })
+                console.log(user.token);
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+            setMessage("User/Password combination incorrect")
+        });
+}
+
+function handleSubmit(event) {
+    event.preventDefault();
+    doLogin(event);
+}
 
   return (
     <div>
       <Navbar/>
       <div className="Auth-form-container">
-            <form className="Auth-form" >
+            <form className="Auth-form" onSubmit={(event => handleSubmit(event))} >
                 <div className="Auth-form-content">
                     <h3 className="Auth-form-title">Sign In</h3>
                     <div className="form-group mt-3">
@@ -53,7 +83,7 @@ function Login() {
                     </div>
                     <div className="d-grid gap-2 mt-3">
                         <>
-                        <Button type="submit" variant="flat" className="custom-btn" style={{color: 'white'}} onClick={login}>
+                        <Button type="submit" variant="flat" className="custom-btn" style={{color: 'white'}}>
                             Login
                         </Button>
                         <a href ="/signup" className="accountLogin" style={{color: 'white'}}> Need an Account?</a>
