@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const db = require("../models");
+const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
+const jwt = require('./jsonwt');
 const {sign} = require('jsonwebtoken');
 const { validateToken } = require('../middleware/Auth');
 
@@ -64,11 +66,7 @@ router.post("/login", async (req, res) => {
                 
                 else
                 {
-                    const  accessToken = sign({username: User.email, id: User.id},
-                        "SKDHASFsakfashiaDHSLF="
-                   );
-                    
-                   res.json({ id: User.id, token: accessToken});
+                  return res.json({ id: User.id, token: jwt.createToken(req),error: "" });
                 }
             });
         }

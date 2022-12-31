@@ -6,6 +6,7 @@ const cors = require('cors');
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
+require("dotenv").config();
 
 const postRouter = require('./routes/Posts');
 app.use("/posts", postRouter);
