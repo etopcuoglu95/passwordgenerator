@@ -5,9 +5,8 @@ const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
 const jwt = require('./jsonwt');
 const {sign} = require('jsonwebtoken');
-const { validateToken } = require('../middleware/Auth');
 
-
+// add verification using jsonwt
 
 router.get("/", async (req, res) => {
 
@@ -29,24 +28,45 @@ router.post("/CreateUser", async (req, res) => {
     
 });
 
-router.post("/CreatePassword", validateToken, async (req, res) => {
-    const {name,pass} = req.body;
+router.post("/CreatePassword", async (req, res) => {
+    const {name,pass,userId} = req.body;
+    let token;
+
+    if (jwt.isExpired(req)) {
+        return res.status(401).json({ id: "", token: "", error: "Token Expired" });
+    } else {
+        token = jwt.refresh(req);
+    }
+
     bcrypt.hash(pass,10).then((hash) => {
         db.passwords.create({
             name : name,
             pass : hash,
+            userId : userId
         });
-        res.json("Success");
+        return res.status(200).json({ error: "" });
     });
 });
 
 
 router.post("/FindPasswords", async (req, res) => {
-    const {id} = req.body;
-    const list = await db.passwords.findAll({
-        where: { userId : id}
-    });
-    res.json(list);
+    const {userId} = req.body;
+
+    if (jwt.isExpired(req)) {
+        return res.status(401).json({ id: "", token: "", error: "Token Expired" });
+    } else {
+        token = jwt.refresh(req);
+    }
+
+    try{
+        const Passwords = await db.passwords.findAll({
+            where: { userId : userId}
+        });
+        console.log(Passwords);
+        return res.status(200).json({Password: Passwords, token: token, error: ""});
+    } catch (e){
+        return res.status(500).json({error: e});
+    }
 });
 
 // update login
