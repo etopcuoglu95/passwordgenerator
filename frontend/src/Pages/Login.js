@@ -57,7 +57,7 @@ function handleSubmit(event) {
 }
 
   return (
-    <div>
+    <div className="login-page">
       <Navbar/>
       <div className="Auth-form-container">
             <form className="Auth-form" onSubmit={(event => handleSubmit(event))} >

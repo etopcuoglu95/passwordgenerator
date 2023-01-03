@@ -1,8 +1,27 @@
+.home-page{
+  background-color: #d7d8d8;
+  min-height: 100vh;
+}
+
+.login-page{
+  background-color: #d7d8d8;
+  min-height: 100vh;
+}
+
+.signup-page{
+  background-color: #d7d8d8;
+  min-height: 100vh;
+}
+
+.user-home{
+  background-color: #d7d8d8;
+  min-height: 100vh;
+}
 
 .body-text{
-  margin-top: 20px;
+  margin-top: 30px;
   color: #2784ee;
-  font-size: 25px;
+  font-size: 30px;
   height: 0px;
   text-align: center;
   
@@ -20,18 +39,13 @@
   margin-top: 50px;
   margin-bottom: 30px;
 }
-body {
-  margin: 0;
-  font-family: Inter,sans-serif;
-  height: 100vh;
-  background-color: #222292;
-}
+
 .generator--box{
   text-align: center;
 }
 
 .generator--box button{
-  background-color: dodgerblue;
+  background-color: #1e90ff;
   width: 120px;
   height: 30px;
   padding: 0;

@@ -9,7 +9,7 @@ import Sgenerator from '../middleware/Sgenerator';
 // Get a length from input and call funtion with that 
 function Generator()
 {
-  const [value, setValue] = useState("Wanna generate a password? ------>", "");
+  const [value, setValue] = useState(" Wanna generate a password? ------>", "");
   const [input, setInput] = useState(8);
   const changeName = () => {
 
@@ -19,7 +19,7 @@ function Generator()
   return (
     
     <div className="generator--box">
-        <b>Choose Password Length</b><p></p>
+        <b style={{fontSize: '22px'}}>Choose Password Length</b><p></p>
         <RangeSlider
           className='slider'
           value={input}
@@ -30,7 +30,7 @@ function Generator()
           max = '20'
           />
         <input className="passbox" id="final_pass" type="text" size="40" value= {value}/>
-        <Button variant="primary" onClick={changeName}>Generate</Button>
+        <Button variant="primary" style={{marginLeft: "10px"}} onClick={changeName}>Generate</Button>
         <Button variant="primary" onClick={() => navigator.clipboard.writeText(value)}>Copy</Button>
     </div>
     

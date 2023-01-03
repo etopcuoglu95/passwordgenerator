@@ -5,7 +5,7 @@ import Navbar from '../Components/Navigation'
 
 function Home() {
   return (
-    <div>
+    <div className='home-page'>
         <Navbar/>
         <Body/>
         <Generator/>

@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useParams} from "react-router-dom";
+import PasswordCardList from '../Components/PasswordCardList';
 
 // After login come here, axios post create password using middleware,
 // do the post request passing accesstoken in headers. 
@@ -51,17 +52,23 @@ function UserHome() {
       }, []);
 
   return (
-    <main>
+    <div className='user-home'>
     <Navbar/>
-        <div className="PasswordManage" style ={{ minWidth:'60rem', marginTop:"40px"}}>
-            <h1 class="leftpadding headingfont " style={{color: "#532004", marginTop:"0.4rem"}}> 
+        <div className="PasswordManage" style ={{ minWidth:'60rem', marginTop:"25px"}}>
+            <h1 style={{color: "#532004", marginLeft:"15px"}}> 
               Manage Passwords
             </h1>
             <hr/>
-            <h3 class="sectiondivide labelpadding leftpadding headingfont" style={{color:"#532004"}}>Current Passwords</h3>
+            <h3 style={{color:"#532004", marginLeft: "15px"}}>Current Passwords</h3>
+            <div>
+                    <PasswordCardList PasswordList={Passwords} />
+            </div>
             <AddPassword/>
+            <br />
+            <br />
+            
         </div>
-    </main>
+    </div>
   )
 }
 

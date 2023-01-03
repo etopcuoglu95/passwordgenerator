@@ -7,15 +7,13 @@ import Navbar from 'react-bootstrap/Navbar';
 function Navigation()
 { 
   return (
-        <Navbar fluid expand="lg" bg="primary" variant="dark" className='topnav' style={{zIndex: 1001, boxShadow:'1px 2px 9px', overflow:'visible',}}>
-          <Container>
-              <Navbar.Brand href="/home/" id='Navtitle'>Password Generator</Navbar.Brand>
-                  <Nav className='navbar-text'>
+        <Navbar bg="primary" variant="dark" className='topnav' style={{boxShadow:'1px 2px 9px', overflow:'visible',}}>
+              <Navbar.Brand href="/home/" id='Navtitle' style={{marginLeft:"100px"}}>Password Generator</Navbar.Brand>
+                  <Nav className="justify-content-end" style={{ width: "100%", marginRight: "15px" }}>
                       <Nav.Link href="/home/" className="nav-text">Home</Nav.Link>
                       <Nav.Link href="/login" className="nav-text">Login</Nav.Link>
                       <Nav.Link href="/signup"className="nav-text">Signup</Nav.Link>
                   </Nav>
-          </Container>
       </Navbar>
   );
 }

@@ -19,7 +19,7 @@ function Signup() {
   }
 
   return (
-    <div>
+    <div className="signup-page">
       <Navbar/>
       <div className="Auth-form-container">
             <form className="Auth-form" >
