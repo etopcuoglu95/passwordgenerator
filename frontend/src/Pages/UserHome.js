@@ -8,10 +8,9 @@ import axios from "axios";
 import { useParams} from "react-router-dom";
 import PasswordCardList from '../Components/PasswordCardList';
 
-// After login come here, axios post create password using middleware,
-// do the post request passing accesstoken in headers. 
-
-// we have id in the localstorage call get passwords to show users passwords.
+// TODO 
+// Make it beautiful, buttons for add and delete.
+// Make a logout button instead of Login after they logged in.
 
 
 
