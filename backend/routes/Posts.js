@@ -4,9 +4,11 @@ const db = require("../models");
 const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
 const jwt = require('./jsonwt');
+const crypt = require("crypto-js");
 const {sign} = require('jsonwebtoken');
 
-// add verification using jsonwt
+// TODO
+// Add edit and delete
 
 router.get("/", async (req, res) => {
 
@@ -38,6 +40,25 @@ router.post("/CreatePassword", async (req, res) => {
         token = jwt.refresh(req);
     }
 
+    // PUT THIS ON DOTENV
+    var key = "SECRETFORNOW";
+
+    var cipher = crypt.AES.encrypt(pass,key);
+    cipher = cipher.toString();
+    //console.log(cipher);
+
+    var desc = crypt.AES.decrypt(cipher,key);
+    desc = desc.toString(crypt.enc.Utf8);
+    //console.log(desc);
+    
+    db.passwords.create({
+        name : name,
+        pass : cipher,
+        userId : userId
+    });
+    return res.status(200).json({ error: "" });
+    
+    /*
     bcrypt.hash(pass,10).then((hash) => {
         db.passwords.create({
             name : name,
@@ -46,11 +67,14 @@ router.post("/CreatePassword", async (req, res) => {
         });
         return res.status(200).json({ error: "" });
     });
+    */
 });
 
 
 router.post("/FindPasswords", async (req, res) => {
     const {userId} = req.body;
+
+    var key = "SECRETFORNOW";
 
     if (jwt.isExpired(req)) {
         return res.status(401).json({ id: "", token: "", error: "Token Expired" });
@@ -59,10 +83,22 @@ router.post("/FindPasswords", async (req, res) => {
     }
 
     try{
-        const Passwords = await db.passwords.findAll({
+        var Passwords = await db.passwords.findAll({
             where: { userId : userId}
         });
-        console.log(Passwords);
+        
+        //console.log(Passwords[4].pass.toString());
+
+        //var desc = crypt.AES.decrypt(Passwords[4].pass,key);
+        //desc = desc.toString(crypt.enc.Utf8);
+        //console.log(desc);
+
+        
+        for (var i = 0; i < Passwords.length; i++)
+        {
+            Passwords[i].pass = crypt.AES.decrypt(Passwords[i].pass,key).toString(crypt.enc.Utf8);
+        }
+        
         return res.status(200).json({Password: Passwords, token: token, error: ""});
     } catch (e){
         return res.status(500).json({error: e});
