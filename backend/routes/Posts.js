@@ -70,6 +70,27 @@ router.post("/CreatePassword", async (req, res) => {
     */
 });
 
+router.put("/DeletePassword", async (req, res) => {
+    const {targetName} = req.body;
+
+    let token;
+
+    if (jwt.isExpired(req)) {
+        return res.status(401).json({ id: "", token: "", error: "Token Expired" });
+    } else {
+        token = jwt.refresh(req);
+    }
+
+    try {
+        await db.passwords.destroy({where: {name: targetName}});
+        return res.status(200).json({error: "", token: token});
+    } catch (e) {
+        // catch any errors
+        return res.status(500).json({ error: e });
+    }
+});
+
+
 
 router.post("/FindPasswords", async (req, res) => {
     const {userId} = req.body;
