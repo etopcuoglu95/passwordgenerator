@@ -9,8 +9,7 @@ import { useParams} from "react-router-dom";
 import PasswordCardList from '../Components/PasswordCardList';
 
 // TODO 
-// Make it beautiful, buttons for add and delete.
-// Make a logout button instead of Login after they logged in.
+// Make a logout button instead of Login after they logged in. // now make it functional
 
 
 
@@ -54,11 +53,11 @@ function UserHome() {
     <div className='user-home'>
     <Navbar/>
         <div className="PasswordManage" style ={{ minWidth:'60rem', marginTop:"25px"}}>
-            <h1 style={{color: "#532004", marginLeft:"15px"}}> 
+            <h1 style={{color: "black", marginLeft:"15px"}}> 
               Manage Passwords
             </h1>
             <hr/>
-            <h3 style={{color:"#532004", marginLeft: "15px"}}>Current Passwords</h3>
+            <h3 style={{color:"black", marginLeft: "15px"}}>Current Passwords</h3>
             <div>
                     <PasswordCardList PasswordList={Passwords} />
             </div>
