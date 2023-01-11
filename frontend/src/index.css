@@ -97,7 +97,7 @@
   width: 600px;
   height: 500px;
   padding: 20px;
-  border: 2px solid dodgerblue;
+  border: 2px solid #1e90ff;
   border-radius: 5px;
   font-weight: normal;
   color: #707070;
@@ -186,7 +186,7 @@ label {
 }
 
 .error-text {
-  color: white;
+  color: #ffffff;
   text-align: center;
 }
 
@@ -197,8 +197,8 @@ label {
 }
 
 .btn-flat {
-  background-color:  rgb(25, 38, 218) !important;
-  color:  dodgerblue;
+  background-color:  #1926da !important;
+  color:  #1e90ff;
 }
 .btn-flat:hover{
   background-color: rgb(15, 36, 228) !important;

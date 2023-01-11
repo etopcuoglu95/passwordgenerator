@@ -12,6 +12,35 @@ export default function PasswordCard({currentPassword}) {
     const history = useNavigate();
 
     const User = JSON.parse(localStorage.getItem('user_data'));
+    const handleUpdatePassword = async (name) => {
+        var js = {userId: User.id, name: name, token: User.token, password: newPassword};
+        console.log(js);
+        js = JSON.stringify(js);
+        var config =
+            {
+                method: 'post',
+                url: "http://localhost:5000/posts/EditPassword",
+                headers:
+                    {
+                        'Content-Type': 'application/json'
+                    },
+                data: js
+            };
+
+        axios(config)
+            .then(function (response) {
+                const res = response.data;
+                if (res.error) {
+                    console.log('Error fetching Admins');
+                } else {
+                    history(0);
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
     const handleDelete = async (name) => {
         var js = {targetName: name, token: User.token};
 
@@ -44,8 +73,14 @@ export default function PasswordCard({currentPassword}) {
     const inputView = {
         color:'#532004',
         display: 'inline-block',
-        width: '100px'
+        width: '150px'
     }
+
+    const [showUpdate, setShowUpdate] = useState(false);
+    const handleCloseUpdate = () => setShowUpdate(false);
+    const handleShowUpdate = () => setShowUpdate(true);
+    const [newPassword, setNewPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
     const [showRemove, setShowRemove] = useState(false); 
     const handleCloseRemove = () => setShowRemove(false); 
@@ -58,16 +93,17 @@ export default function PasswordCard({currentPassword}) {
             <text className='headingfont' style={{"color":"white","font-weight": '600', "margin-bottom": "10px"}}>Company : {currentPassword.name}</text>
             <text className='headingfont' style={{"color":"white","font-weight": '600', "margin-bottom": "10px"}}>Password : {currentPassword.pass}</text>
             <div id="adminOps">
-                    <Button variant="danger" style={{ "text-align": 'center'}} onClick={handleShowRemove}>Remove</Button>
+                    <Button variant="danger" style={{ "text-align": 'center', "marginRight" : "15px"}} onClick={handleShowRemove}>Remove</Button>
+                    <Button variant="danger" style={{ "text-align": 'center'}} onClick={handleShowUpdate}>Update</Button>
             </div>
 
             <Modal show={showRemove} onHide={handleCloseRemove} style={{"backdrop-filter": "blur(5px)"}}>
-                <Modal.Header closeButton style={{"background-color": "#007bff"}}>
+                <Modal.Header closeButton style={{ "background-color": "#0d6efd", fontFamily:'Raleway', color:'#ffffff' }}>
                     <Modal.Title>Remove Password?</Modal.Title>
                 </Modal.Header>
-                <Modal.Body style={{"background-color": "#fffaf0"}}>Are you sure you want to remove this
+                <Modal.Body >Are you sure you want to remove this
                     Password?</Modal.Body>
-                <Modal.Footer style={{"background-color": "#fffaf0"}}>
+                <Modal.Footer style={{ "background-color": "#0d6efd" }}>
                     <Button variant="secondary" onClick={handleCloseRemove}>
                         No, Go Back
                     </Button>
@@ -76,6 +112,29 @@ export default function PasswordCard({currentPassword}) {
                     </Button>
                 </Modal.Footer>
             </Modal>
+
+            <Modal show={showUpdate} onHide={handleCloseUpdate} style={{ "backdrop-filter": "blur(5px)" }}>
+                <Modal.Header closeButton style={{ "background-color": "#007bff"}}>
+                    <Modal.Title>Update Password </Modal.Title>
+                </Modal.Header>
+                <Modal.Body style={{ "background-color": "#fffaf0" }}>
+                    <form>
+                        <div className='pass-input'>
+                            <label for="password" class="labelpadding clickable" style={inputView}>New Password:</label>
+                            <input id="password" name="password" type="password" class="labelpadding clickable" onChange={(e) => setNewPassword(e.target.value)}/>
+                        </div>
+                    </form>
+                </Modal.Body>
+                <Modal.Footer style={{ "background-color": "#007bff" }}>
+                    <Button variant="secondary" onClick={handleCloseUpdate} style={{fontFamily:'Raleway'}}>
+                        Go Back
+                    </Button>
+                    <Button variant="success" onClick={() => handleUpdatePassword(currentPassword.name)} style={{fontFamily:'Raleway'}}>
+                        Update Password
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
 
         </Card>
 
