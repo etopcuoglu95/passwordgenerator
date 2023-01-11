@@ -18,9 +18,9 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/CreateUser", async (req, res) => {
-    const {email,password,name,surname} = req.body;
+    const {email,password} = req.body;
     bcrypt.hash(password,10).then((hash) => {
-        db.users.create({
+        db.user.create({
             email : email,
             password : hash,
         });
@@ -51,7 +51,7 @@ router.post("/CreatePassword", async (req, res) => {
     desc = desc.toString(crypt.enc.Utf8);
     //console.log(desc);
     
-    db.passwords.create({
+    db.password.create({
         name : name,
         pass : cipher,
         userId : userId
@@ -82,7 +82,7 @@ router.put("/DeletePassword", async (req, res) => {
     }
 
     try {
-        await db.passwords.destroy({where: {name: targetName}});
+        await db.password.destroy({where: {name: targetName}});
         return res.status(200).json({error: "", token: token});
     } catch (e) {
         // catch any errors
@@ -95,6 +95,7 @@ router.put("/DeletePassword", async (req, res) => {
 router.post("/FindPasswords", async (req, res) => {
     const {userId} = req.body;
 
+    console.log(userId);
     var key = "SECRETFORNOW";
 
     if (jwt.isExpired(req)) {
@@ -104,7 +105,7 @@ router.post("/FindPasswords", async (req, res) => {
     }
 
     try{
-        var Passwords = await db.passwords.findAll({
+        var Passwords = await db.password.findAll({
             where: { userId : userId}
         });
         
@@ -118,6 +119,7 @@ router.post("/FindPasswords", async (req, res) => {
         for (var i = 0; i < Passwords.length; i++)
         {
             Passwords[i].pass = crypt.AES.decrypt(Passwords[i].pass,key).toString(crypt.enc.Utf8);
+            console.log(Passwords[i].pass.toString());
         }
         
         return res.status(200).json({Password: Passwords, token: token, error: ""});
@@ -126,10 +128,44 @@ router.post("/FindPasswords", async (req, res) => {
     }
 });
 
+
+router.post("/EditPassword", async (req, res) => {
+    const {userId,name, password} = req.body;
+
+    var key = "SECRETFORNOW";
+
+    var cipher = crypt.AES.encrypt(password,key);
+    cipher = cipher.toString();
+
+    if (jwt.isExpired(req)) {
+        return res.status(401).json({ id: "", token: "", error: "Token Expired" });
+    } else {
+        token = jwt.refresh(req);
+    }
+
+    try{
+         await db.password.update(
+            {  
+                pass : cipher,
+            },
+            {
+                where: 
+                {   userId : userId,
+                    name : name
+                }
+            }
+        );
+        
+        return res.status(200).json({error: ""});
+    } catch (e){
+        return res.status(500).json({error: e});
+    }
+});
+
 // update login
 router.post("/login", async (req, res) => {
     const {email, password} = req.body;
-        const User = await db.users.findOne({
+        const User = await db.user.findOne({
             where: { email: email}
         });
 

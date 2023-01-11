@@ -1,3 +1,4 @@
+
 module.exports = function (sequelize, DataTypes) {
     var user = sequelize.define("user", {
         email: {
@@ -18,6 +19,12 @@ module.exports = function (sequelize, DataTypes) {
             defaultValue: 0
         }
     });
+
+    user.associate = function (models)
+    {
+        user.hasMany(models.password,{ 
+            foreignKey: 'userId'});
+    }
 
     return user;
 };
