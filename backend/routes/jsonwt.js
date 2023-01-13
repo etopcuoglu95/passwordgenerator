@@ -11,7 +11,7 @@ _createToken = function(req) {
     const { id } = req.body;
     const user = { id: id };
     // figure out why dotenv is not working/
-    const accessToken = jwt.sign(user, "process.env.ACCESS_TOKEN_SECRET - Lol", { expiresIn: '30m' });
+    const accessToken = jwt.sign(user, process.env.JWT_TOKEN_SECRET, { expiresIn: '30m' });
     return accessToken;
 }
 
@@ -26,7 +26,7 @@ exports.isExpired = function(req) {
     // verify token
     try {
         // verify token
-        const valid = jwt.verify(token, "process.env.ACCESS_TOKEN_SECRET - Lol");
+        const valid = jwt.verify(token, process.env.JWT_TOKEN_SECRET);
         if (valid.id !== req.body.id)
             return true;
         return false;
@@ -43,7 +43,7 @@ exports.refresh = function (req) {
     const { token } = req.body;
 
     // decode token
-    const valid = jwt.verify(token, "process.env.ACCESS_TOKEN_SECRET - Lol");
+    const valid = jwt.verify(token, process.env.JWT_TOKEN_SECRET);
 
     // create object
     const person = {

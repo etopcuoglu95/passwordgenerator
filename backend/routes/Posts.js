@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const db = require("../models");
-const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
 const jwt = require('./jsonwt');
 const crypt = require("crypto-js");
@@ -41,9 +40,9 @@ router.post("/CreatePassword", async (req, res) => {
     }
 
     // PUT THIS ON DOTENV
-    var key = "SECRETFORNOW";
+    //var key = "SECRETFORNOW";
 
-    var cipher = crypt.AES.encrypt(pass,key);
+    var cipher = crypt.AES.encrypt(pass,process.env.ACCESS_TOKEN_SECRET);
     cipher = cipher.toString();
     //console.log(cipher);
 
@@ -95,9 +94,6 @@ router.put("/DeletePassword", async (req, res) => {
 router.post("/FindPasswords", async (req, res) => {
     const {userId} = req.body;
 
-    console.log(userId);
-    var key = "SECRETFORNOW";
-
     if (jwt.isExpired(req)) {
         return res.status(401).json({ id: "", token: "", error: "Token Expired" });
     } else {
@@ -118,7 +114,7 @@ router.post("/FindPasswords", async (req, res) => {
         
         for (var i = 0; i < Passwords.length; i++)
         {
-            Passwords[i].pass = crypt.AES.decrypt(Passwords[i].pass,key).toString(crypt.enc.Utf8);
+            Passwords[i].pass = crypt.AES.decrypt(Passwords[i].pass,process.env.ACCESS_TOKEN_SECRET).toString(crypt.enc.Utf8);
             console.log(Passwords[i].pass.toString());
         }
         
@@ -132,9 +128,7 @@ router.post("/FindPasswords", async (req, res) => {
 router.post("/EditPassword", async (req, res) => {
     const {userId,name, password} = req.body;
 
-    var key = "SECRETFORNOW";
-
-    var cipher = crypt.AES.encrypt(password,key);
+    var cipher = crypt.AES.encrypt(password,process.env.ACCESS_TOKEN_SECRET);
     cipher = cipher.toString();
 
     if (jwt.isExpired(req)) {

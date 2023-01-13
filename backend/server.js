@@ -2,11 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const db = require('./models');
 const cors = require('cors');
+const dotenv = require("dotenv")
+dotenv.config()
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-require("dotenv").config();
 
 const postRouter = require('./routes/Posts');
 app.use("/posts", postRouter);
