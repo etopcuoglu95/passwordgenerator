@@ -46,7 +46,7 @@ router.post("/CreatePassword", async (req, res) => {
     cipher = cipher.toString();
     //console.log(cipher);
 
-    var desc = crypt.AES.decrypt(cipher,key);
+    var desc = crypt.AES.decrypt(cipher,process.env.ACCESS_TOKEN_SECRET);
     desc = desc.toString(crypt.enc.Utf8);
     //console.log(desc);
     
