@@ -71,7 +71,7 @@ export default function PasswordCard({currentPassword}) {
     }
 
     const inputView = {
-        color:'#532004',
+        color:'#ffffff',
         display: 'inline-block',
         width: '150px'
     }
@@ -101,7 +101,7 @@ export default function PasswordCard({currentPassword}) {
                 <Modal.Header closeButton style={{ "background-color": "#0d6efd", fontFamily:'Raleway', color:'#ffffff' }}>
                     <Modal.Title>Remove Password?</Modal.Title>
                 </Modal.Header>
-                <Modal.Body >Are you sure you want to remove this
+                <Modal.Body style={{ "background-color": "#5daeff" , "color":"white"}} >Are you sure you want to remove this
                     Password?</Modal.Body>
                 <Modal.Footer style={{ "background-color": "#0d6efd" }}>
                     <Button variant="secondary" onClick={handleCloseRemove}>
@@ -114,10 +114,10 @@ export default function PasswordCard({currentPassword}) {
             </Modal>
 
             <Modal show={showUpdate} onHide={handleCloseUpdate} style={{ "backdrop-filter": "blur(5px)" }}>
-                <Modal.Header closeButton style={{ "background-color": "#007bff"}}>
+                <Modal.Header closeButton style={{ "background-color": "#0d6efd", fontFamily:'Raleway', color:'#ffffff' }}>
                     <Modal.Title>Update Password </Modal.Title>
                 </Modal.Header>
-                <Modal.Body style={{ "background-color": "#fffaf0" }}>
+                <Modal.Body style={{ "background-color": "#5daeff" , "color":"white"}}>
                     <form>
                         <div className='pass-input'>
                             <label for="password" class="labelpadding clickable" style={inputView}>New Password:</label>
